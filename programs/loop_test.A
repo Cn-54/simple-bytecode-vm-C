@@ -1,0 +1,13 @@
+set 0 10
+set 1 1
+set 2 10
+set 3 1
+loop:
+add 3 0 0
+add 1 3 1
+jlt 1 2 loop
+jmp hlt
+hlt:
+out 0
+onl
+HALT

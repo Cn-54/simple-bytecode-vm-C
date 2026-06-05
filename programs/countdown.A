@@ -1,0 +1,10 @@
+set 0 10
+set 1 1
+set 2 32
+loop:
+out 0
+put 2
+sub 0 1 0
+jgt 0 1 loop
+onl
+HALT
