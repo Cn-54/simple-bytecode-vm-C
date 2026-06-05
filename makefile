@@ -1,19 +1,27 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
+BUILD = build
+
 SRC = $(wildcard src/*.c)
-OBJ = $(SRC:src/%.c=build/%.o)
+OBJ = $(SRC:src/%.c=$(BUILD)/%.o)
 
-TARGET = run
+RUN = run
+ASM = assemble
 
-all: $(TARGET)
+all: $(RUN) $(ASM)
 
-$(TARGET): $(OBJ)
-	$(CC) $(OBJ) -o $(TARGET)
+$(RUN): $(BUILD)/run.o $(BUILD)/VM.o $(BUILD)/memory.o
+	$(CC) $^ -o $@
 
-build/%.o: src/%.c
-	@mkdir -p build
+
+$(ASM): $(BUILD)/assemble.o
+	$(CC) $^ -o $@
+
+
+$(BUILD)/%.o: src/%.c
+	@mkdir -p $(BUILD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf build $(TARGET)
+	rm -rf $(BUILD) $(RUN) $(ASM)

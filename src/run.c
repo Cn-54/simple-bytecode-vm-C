@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        printf("usage: ./vm <program>\n");
+        printf("usage: ./run <program>\n");
         return 1;
     }
 
